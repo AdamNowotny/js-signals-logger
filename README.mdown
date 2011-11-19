@@ -10,19 +10,19 @@ Other features:
 API
 ---
 
-## Configuration
+### Configuration
 ```js
 var logger = new SignalLogger({ finished: obj.finished });
 ```
 
-## Signal count
+### Signal count
 Returns the amount of times a watched signal has been dispatched.
 
 ```js
 logger.finished.count
 ```
 
-## Filtering
+### Filtering
 ```js
 logger.finished.setFilter(function (param1, param2, ...) {
 	return true; // always count this signal (default)
@@ -30,7 +30,7 @@ logger.finished.setFilter(function (param1, param2, ...) {
 ```
 
 Usage
--------
+-----
 
 ### Basic usage
 
