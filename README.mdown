@@ -4,10 +4,7 @@ Reduce the amount of code you have to write for unit testing components using [J
 
 It shows how many times specified signals have been dispatched.
 
-Other features:
--  filter which dispatches should be counted
-
-API
+API / Features
 ---
 
 ### Configuration
@@ -23,6 +20,8 @@ logger.finished.count
 ```
 
 ### Filtering
+Only count signals that match condition.
+
 ```js
 logger.finished.setFilter(function (param1, param2, ...) {
 	return true; // always count this signal (default)
