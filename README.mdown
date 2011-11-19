@@ -1,17 +1,34 @@
 js-signal-logger
 ================
-Reduce the amount of code you have to write for unit testing components using js-signals.
+Reduce the amount of code you have to write for unit testing components using [JS-Signals](http://millermedeiros.github.com/js-signals/).
+
 It shows how many times specified signals have been dispatched.
+
 Other features:
-- filter which dispatches should be counted
-Example
-From signalLoggerSpec.js
+-  filter which dispatches should be counted
+
+Usage
+-------
+
+### Basic usage
+
+```js
+it('should count signals', function () {
+	var obj = {	finished: new signals.Signal() };
+	var logger = new SignalLogger({ finished: obj.finished });
+
+	obj.finished.dispatch();
+
+	expect(logger.finished.count).toBe(1);
+});
+```
+
+### Filtering
 
 ```js
 it('should count filtered signals', function () {
-	var obj = { finished: new signals.Signal() };
+	var obj = {	finished: new signals.Signal() };
 	var logger = new SignalLogger({ finished: obj.finished });
-	// optional
 	logger.finished.setFilter(function (signalArgs) {
 		return signalArgs === 1;
 	});
