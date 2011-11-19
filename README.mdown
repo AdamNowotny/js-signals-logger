@@ -6,6 +6,7 @@ Other features:
 - filter which dispatches should be counted
 Example
 From signalLoggerSpec.js
+
 ```js
 it('should count filtered signals', function () {
 	var obj = { finished: new signals.Signal() };
