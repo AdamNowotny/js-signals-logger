@@ -7,6 +7,28 @@ It shows how many times specified signals have been dispatched.
 Other features:
 -  filter which dispatches should be counted
 
+API
+---
+
+## Configuration
+```js
+var logger = new SignalLogger({ finished: obj.finished });
+```
+
+## Signal count
+Returns the amount of times a watched signal has been dispatched.
+
+```js
+logger.finished.count
+```
+
+## Filtering
+```js
+logger.finished.setFilter(function (param1, param2, ...) {
+	return true; // always count this signal (default)
+} );
+```
+
 Usage
 -------
 
