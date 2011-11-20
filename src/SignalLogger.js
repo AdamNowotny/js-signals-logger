@@ -2,6 +2,7 @@
 
 	var SignalLogger = function (signalSpec) {
 		if (signalSpec == null) throw { name: 'ArgumentError' };
+		this.signalSpec = signalSpec;
 		var that = this;
 		initialize();
 
@@ -23,22 +24,26 @@
 	var SignalInfo = function (signalName, signal) {
 		this.name = signalName;
 		this.signal = signal;
+		this.count = 0;
+		this.initialize();
 		this.reset();
 	};
 
-	SignalInfo.prototype.reset = function () {
-		this.count = 0;
-		this.filter = trueFilter;
-		if (!this.signal.has(onSignal)) {
-			this.signal.add(onSignal, this);
-		}
+	SignalInfo.prototype.initialize = function () {
+		this.signal.add(onSignal, this);
 
 		function onSignal(parameters) {
 			if (!this.filter(parameters)) {
 				return;
 			}
 			this.count++;
-		}
+		};
+	};
+
+	SignalInfo.prototype.reset = function () {
+		this.count = 0;
+		this.filter = trueFilter;
+
 
 		function trueFilter() {
 			return true;
