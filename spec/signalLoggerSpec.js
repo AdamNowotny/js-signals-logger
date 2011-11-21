@@ -25,19 +25,18 @@ define(['src/SignalLogger', 'signals'], function (SignalLogger, signals) {
 		});
 
 		it('should count filtered signals', function () {
-			var obj = { finished: new signals.Signal() };
-			var logger = new SignalLogger({ finished: obj.finished });
-			logger.finished.setFilter(function (signalArgs) {
-				return signalArgs === 1;
-			});
+            var obj = {	finished: new signals.Signal() };
+            var logger = new SignalLogger({ finished: obj.finished });
+            logger.finished.setFilter(function (dispatchArgs) {
+                return dispatchArgs === 1; // only count signals dispatched with 1
+            });
 
-			obj.finished.dispatch(1);
-			obj.finished.dispatch(2);
-			obj.finished.dispatch(1);
+            obj.finished.dispatch(1);
+            obj.finished.dispatch(5);
+            obj.finished.dispatch(1);
 
-			expect(logger.finished.count).toBe(2);
-		});
-		
+            expect(logger.finished.count).toBe(2);
+        });
 	});
 	
 });
