@@ -18,14 +18,14 @@ Name is used to create `SignalInfo` object for each signal and attach it to the 
 var logger = new SignalLogger({ finished: obj.finished });
 ```
 
-### Count
+### SignalInfo.count
 Returns the amount of times the watched signal has been dispatched.
 
 ```js
 logger.finished.count
 ```
 
-### Filtering
+### SignalInfo.setFilter
 Only count signals that match condition.
 
 ```js
