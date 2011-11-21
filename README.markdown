@@ -1,7 +1,9 @@
 js-signal-logger
 ================
 `SignalLogger` reduces the amount of repetitive code you have to write to unit test components using [JS-Signals](http://millermedeiros.github.com/js-signals/).
+
 It counts how many times specified signals have been dispatched.
+
 Filtering allows checking if correct parameters have been passed for signal dispatch.
 
 API / Features
@@ -9,6 +11,7 @@ API / Features
 
 ### Configuration
 Pass an object specifying the name and the signal.
+
 Name is used to create `SignalInfo` object for each signal and attach it to the logger as new fields.
 
 ```js
@@ -33,7 +36,7 @@ logger.finished.setFilter(function (param1, param2, ...) {
 
 Usage
 -----
-Check the spec folder for [RequireJS]{http://requirejs.org/} configuration.
+Check the `spec` folder for [RequireJS](http://requirejs.org/) configuration.
 
 ### Basic usage
 
@@ -49,7 +52,7 @@ it('should count signals', function () {
 ```
 
 ### Filtering
-Method passed to `setFilter` should return false if signal should be ignored.
+Method passed to `setFilter` should return `false` if signal should be ignored.
 
 ```js
 it('should count filtered signals', function () {
