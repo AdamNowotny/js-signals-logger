@@ -1,5 +1,5 @@
 define(['src/SignalLogger', 'signals'], function (SignalLogger, signals) {
-	
+
 	describe('SignalLogger', function () {
 
 		it('should fail if configuration not specified', function () {
@@ -25,18 +25,30 @@ define(['src/SignalLogger', 'signals'], function (SignalLogger, signals) {
 		});
 
 		it('should count filtered signals', function () {
-            var obj = {	finished: new signals.Signal() };
-            var logger = new SignalLogger({ finished: obj.finished });
-            logger.finished.setFilter(function (dispatchArgs) {
-                return dispatchArgs === 1; // only count signals dispatched with 1
-            });
+			var obj = { finished: new signals.Signal() };
+			var logger = new SignalLogger({ finished: obj.finished });
+			logger.finished.setFilter(function (dispatchArgs) {
+				return dispatchArgs === 1; // only count signals dispatched with 1
+			});
 
-            obj.finished.dispatch(1);
-            obj.finished.dispatch(5);
-            obj.finished.dispatch(1);
+			obj.finished.dispatch(1);
+			obj.finished.dispatch(5);
+			obj.finished.dispatch(1);
 
-            expect(logger.finished.count).toBe(2);
-        });
+			expect(logger.finished.count).toBe(2);
+		});
+
+		it('should filter by expected parameter values', function() {
+			var obj = { finished: new signals.Signal() };
+			var logger = new SignalLogger({ finished: obj.finished });
+			logger.finished.matchValues(1);
+
+			obj.finished.dispatch(1);
+			obj.finished.dispatch(5);
+			obj.finished.dispatch(1);
+
+			expect(logger.finished.count).toBe(2);
+		});
 	});
-	
+
 });

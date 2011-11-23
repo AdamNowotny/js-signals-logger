@@ -54,5 +54,17 @@
 		this.filter = predicate;
 	};
 
+	SignalInfo.prototype.matchValues = function () {
+		var expectedArgs = arguments;
+		this.filter = function() {
+			for (var i = 0; i < expectedArgs.length; i++) {
+				if (arguments[i] !== expectedArgs[i]) {
+					return false;
+				}
+			}
+			return true;
+		};
+	};
+
 	return SignalLogger;
 });

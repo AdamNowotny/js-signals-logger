@@ -34,6 +34,21 @@ logger.finished.setFilter(function (param1, param2, ...) {
 } );
 ```
 
+### SignalInfo.matchValues
+Count signals only if dispatched with given values. It's a shortcut to `setFilter`.
+
+```js
+logger.finished.matchValues(expectedInfo);
+```
+
+which is equivalent to:
+
+```js
+logger.finished.setFilter(function (info) {
+	return info == expectedInfo;
+} );
+```
+
 Usage
 -----
 Check the `spec` folder for [RequireJS](http://requirejs.org/) configuration.
