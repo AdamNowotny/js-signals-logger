@@ -1,7 +1,7 @@
 ﻿define(['signals'], function () {
 
 	var SignalLogger = function (signalSpec) {
-		if (signalSpec == null) throw { name: 'ArgumentError' };
+		if (signalSpec == null) throw 'Logger configuration not specified';
 		this.signalSpec = signalSpec;
 		var that = this;
 		initialize();
@@ -22,6 +22,7 @@
 	};
 
 	var SignalInfo = function (signalName, signal) {
+		if (signal == null) throw 'Signal does not exist: ' + signalName;
 		this.name = signalName;
 		this.signal = signal;
 		this.count = 0;
@@ -56,7 +57,7 @@
 
 	SignalInfo.prototype.matchValues = function () {
 		var expectedArgs = arguments;
-		this.filter = function() {
+		this.filter = function () {
 			for (var i = 0; i < expectedArgs.length; i++) {
 				if (arguments[i] !== expectedArgs[i]) {
 					return false;

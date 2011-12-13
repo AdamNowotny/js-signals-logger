@@ -5,7 +5,17 @@ define(['src/SignalLogger', 'signals'], function (SignalLogger, signals) {
 		it('should fail if configuration not specified', function () {
 			expect(function () {
 				return new SignalLogger();
-			}).toThrow({ name: 'ArgumentError' });
+			}).toThrow('Logger configuration not specified');
+		});
+
+		it('should fail if signal does not exist', function () {
+			var obj = {};
+			
+			expect(function () {
+				return new SignalLogger({
+					finished: obj.finished
+				});
+			}).toThrow('Signal does not exist: finished');
 		});
 
 		it('should count signals', function () {
