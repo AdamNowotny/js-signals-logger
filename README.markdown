@@ -1,3 +1,9 @@
+Warning
+================
+It is recomended to use [jasmine-signals](https://github.com/AdamNowotny/jasmine-signals).
+
+js-signal-logger is obsolete, but I left it here in case you're not using Jasmine and need some tool to simplify js-signals testing.
+
 js-signal-logger
 ================
 `SignalLogger` reduces the amount of repetitive code you have to write to unit test components using [JS-Signals](http://millermedeiros.github.com/js-signals/).
